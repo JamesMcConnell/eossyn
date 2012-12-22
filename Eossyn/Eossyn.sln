@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eossyn.Web", "Eossyn.Web\Eossyn.Web.csproj", "{5BD7E3E1-7230-4047-A3F1-10800846E43F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eossyn.Web.Tests", "Eossyn.Web.Tests\Eossyn.Web.Tests.csproj", "{2D89D450-57F1-463A-BD57-14E75F8A67AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5BD7E3E1-7230-4047-A3F1-10800846E43F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BD7E3E1-7230-4047-A3F1-10800846E43F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BD7E3E1-7230-4047-A3F1-10800846E43F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BD7E3E1-7230-4047-A3F1-10800846E43F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D89D450-57F1-463A-BD57-14E75F8A67AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D89D450-57F1-463A-BD57-14E75F8A67AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D89D450-57F1-463A-BD57-14E75F8A67AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D89D450-57F1-463A-BD57-14E75F8A67AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
