@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Eossyn.Data
+namespace Eossyn.Models
 {
     using System;
     using System.Data.Entity;
