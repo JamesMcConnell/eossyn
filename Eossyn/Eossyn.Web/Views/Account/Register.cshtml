@@ -1,37 +1,44 @@
 ﻿@model Eossyn.Web.Models.RegisterModel
 @{
-    ViewBag.Title = "Register";
+	ViewBag.Title = "Register";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>Create a new account.</h2>
-</hgroup>
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
-
-    <fieldset>
-        <legend>Registration Form</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.ConfirmPassword)
-                @Html.PasswordFor(m => m.ConfirmPassword)
-            </li>
-        </ol>
-        <input type="submit" value="Register" />
-    </fieldset>
+@using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-register form-horizontal" })) {
+	@Html.AntiForgeryToken()
+	<fieldset>
+		<legend>Register Account</legend>
+		<div class="control-group">
+			@Html.LabelFor(m => m.EmailAddress, new { @class = "control-label" })
+			<div class="controls">
+				@Html.TextBoxFor(m => m.EmailAddress, new { @class = "input-level-block", placeholder = "Email Address" })
+				@Html.ValidationMessageFor(m => m.EmailAddress, "Email is required")
+			</div>
+		</div>
+		<div class="control-group">
+			@Html.LabelFor(m => m.UserName, new { @class = "control-label" })
+			<div class="controls">
+				@Html.TextBoxFor(m => m.UserName, new { @class = "input-level-block", placeholder = "Username" })
+				@Html.ValidationMessageFor(m => m.UserName, "Username is required")
+			</div>
+		</div>
+		<div class="control-group">
+			@Html.LabelFor(m => m.Password, new { @class = "control-label" })
+			<div class="controls">
+				@Html.PasswordFor(m => m.Password, new { @class = "input-level-block", placeholder = "Password" })
+				@Html.ValidationMessageFor(m => m.Password, "Password is required")
+			</div>
+		</div>
+		<div class="control-group">
+			@Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+			<div class="controls">
+				@Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input-level-block", placeholder = "Password" })
+				@Html.ValidationMessageFor(m => m.ConfirmPassword, "Passwords must match")
+				<button class="btn btn-primary btn-register" type="submit">Register</button>
+			</div>
+		</div>
+	</fieldset>
 }
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/jqueryval")
 }

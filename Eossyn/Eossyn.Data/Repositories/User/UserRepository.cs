@@ -38,12 +38,13 @@ namespace Eossyn.Data.Repositories
 
 		public void Insert(User user)
 		{
-
+			db.Users.Add(user);
+			db.SaveChanges();
 		}
 
 		public void Update(User user)
 		{
-
+			db.SaveChanges();
 		}
 		#endregion
 	}

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3BB50C55-A0D1-4A28-AEE6-E10A63E7B444}</ProjectGuid>
+    <ProjectGuid>{6AD81901-19E7-42CB-9732-30E88CE475F1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Eossyn.Core</RootNamespace>
-    <AssemblyName>Eossyn.Core</AssemblyName>
+    <RootNamespace>Eossyn.Infrastructure</RootNamespace>
+    <AssemblyName>Eossyn.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,7 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,14 +40,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authentication\FormsAuthenticationService.cs" />
-    <Compile Include="Authentication\IAuthenticationService.cs" />
-    <Compile Include="Encryption\HasherService.cs" />
-    <Compile Include="Encryption\IHasherService.cs" />
-    <Compile Include="Extensions\Conversion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\User\IUserService.cs" />
+    <Compile Include="Services\User\UserService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Eossyn.Core\Eossyn.Core.csproj">
+      <Project>{3BB50C55-A0D1-4A28-AEE6-E10A63E7B444}</Project>
+      <Name>Eossyn.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eossyn.Data\Eossyn.Data.csproj">
+      <Project>{990C869A-FC46-43D9-9126-5896F5F556CE}</Project>
+      <Name>Eossyn.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eossyn.Models\Eossyn.Models.csproj">
+      <Project>{837E7E3E-B5FD-42E1-9356-5BEA73D4E8C5}</Project>
+      <Name>Eossyn.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
