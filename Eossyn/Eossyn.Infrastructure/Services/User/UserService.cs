@@ -56,6 +56,7 @@
 		{
 			var user = new User
 			{
+				UserId = Guid.NewGuid(),
 				UserName = userName,
 				Salt = Guid.NewGuid(),
 				EmailAddress = emailAddress,
