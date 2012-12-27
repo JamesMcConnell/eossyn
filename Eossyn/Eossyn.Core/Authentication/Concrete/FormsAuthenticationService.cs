@@ -2,7 +2,7 @@
 using System.Web;
 using System.Web.Security;
 
-namespace Eossyn.Core.Authentication.Concrete
+namespace Eossyn.Core.Authentication
 {
     public class FormsAuthenticationService : IAuthenticationService
     {

@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Eossyn.Core.Encryption.Concrete
+namespace Eossyn.Core.Encryption
 {
     public class HasherService : IHasherService
     {

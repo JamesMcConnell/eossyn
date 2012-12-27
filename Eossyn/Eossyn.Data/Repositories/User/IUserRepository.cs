@@ -1,13 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Eossyn.Models;
 
 namespace Eossyn.Data.Repositories
 {
-    public interface IUserRepository
-    {
-        IQueryable<User> FetchAll();
-    }
+	public interface IUserRepository
+	{
+		IQueryable<User> FetchAll();
+
+		User FetchById(Guid userId);
+		User FetchByUserName(string userName);
+		User FetchByEmail(string emailAddress);
+
+		void Insert(User user);
+		void Update(User user);
+	}
 }

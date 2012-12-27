@@ -31,13 +31,6 @@
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
-            <PropertyRef Name="UserName" />
-            <PropertyRef Name="Password" />
-            <PropertyRef Name="Salt" />
-            <PropertyRef Name="EmailAddress" />
-            <PropertyRef Name="LastLoginDate" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="IsEnabled" />
           </Key>
           <Property Name="UserId" Type="Guid" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
