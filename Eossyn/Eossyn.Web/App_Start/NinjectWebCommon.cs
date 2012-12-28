@@ -13,6 +13,7 @@ namespace Eossyn.Web.App_Start
 
 	using Core.Authentication;
 	using Core.Encryption;
+    using Core.Web;
 	using Data.Repositories;
 	// using Infrastructure.Services;
     using Infrastructure.Managers;
@@ -64,6 +65,8 @@ namespace Eossyn.Web.App_Start
 			kernel.Bind<IUserManager>().To<UserManager>().InRequestScope();
 			kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
             kernel.Bind<IUserSessionRepository>().To<UserSessionRepository>().InRequestScope();
+            kernel.Bind<IUserSessionManager>().To<UserSessionManager>().InRequestScope();
+            kernel.Bind<ISessionUtility>().To<SessionUtility>().InRequestScope();
 		}        
 	}
 }

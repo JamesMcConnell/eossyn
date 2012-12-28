@@ -70,7 +70,7 @@
             var dbUserSession = FetchByUserSessionId(userSessionId);
             if (dbUserSession != null)
             {
-                dbUserSession.EndedTime = DateTime.Now;
+                dbUserSession.IsActive = false;
                 db.SaveChanges();
             }
         }

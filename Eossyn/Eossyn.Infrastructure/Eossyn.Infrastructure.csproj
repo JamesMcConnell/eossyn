@@ -40,9 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Managers\UserSessionManager\IUserSessionManager.cs" />
+    <Compile Include="Managers\UserSessionManager\UserSessionManager.cs" />
     <Compile Include="Managers\User\IUserManager.cs" />
     <Compile Include="Managers\User\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\SessionKeys.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Eossyn.Core\Eossyn.Core.csproj">

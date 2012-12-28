@@ -20,6 +20,6 @@ namespace Eossyn.Models
         public System.Guid CurrentWorldId { get; set; }
         public System.DateTime CreatedTime { get; set; }
         public System.DateTime LastUpdated { get; set; }
-        public System.DateTime EndedTime { get; set; }
+        public bool IsActive { get; set; }
     }
 }

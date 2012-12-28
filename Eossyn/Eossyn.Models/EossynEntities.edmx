@@ -90,7 +90,7 @@
           <Property Name="CurrentWorldId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="CreatedTime" Type="datetime2" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime2" Nullable="false" />
-          <Property Name="EndedTime" Type="datetime2" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="World">
           <Key>
@@ -257,7 +257,7 @@
           <Property Type="Guid" Name="CurrentWorldId" Nullable="false" />
           <Property Type="DateTime" Name="CreatedTime" Nullable="false" />
           <Property Type="DateTime" Name="LastUpdated" Nullable="false" />
-          <Property Type="DateTime" Name="EndedTime" Nullable="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
         </EntityType>
         <EntityType Name="World">
           <Key>
@@ -387,7 +387,7 @@
           <EntitySetMapping Name="UserSessions">
             <EntityTypeMapping TypeName="EossynModels.UserSession">
               <MappingFragment StoreEntitySet="UserSession">
-                <ScalarProperty Name="EndedTime" ColumnName="EndedTime" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
                 <ScalarProperty Name="CurrentWorldId" ColumnName="CurrentWorldId" />
@@ -432,7 +432,7 @@
         <EntityTypeShape EntityType="EossynModels.CharacterFaction" Width="1.5" PointX="3.75" PointY="1.5" Height="1.5956835937499996" />
         <EntityTypeShape EntityType="EossynModels.CharacterRace" Width="1.5" PointX="6" PointY="1.25" Height="1.9802864583333335" />
         <EntityTypeShape EntityType="EossynModels.UserCharacter" Width="1.5" PointX="8.25" PointY="0.5" Height="2.9417936197916656" />
-        <EntityTypeShape EntityType="EossynModels.UserSession" Width="1.5" PointX="13.125" PointY="0.5" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="EossynModels.UserSession" Width="1.5" PointX="13.125" PointY="0.5" Height="2.3648893229166665" />
         <EntityTypeShape EntityType="EossynModels.World" Width="1.5" PointX="10.875" PointY="0.5" Height="1.5956835937499996" />
         <AssociationConnector Association="EossynModels.FK_UserCharacter_CharacterClass" >
           <ConnectorPoint PointX="10.875" PointY="2.9708968098958328" />
