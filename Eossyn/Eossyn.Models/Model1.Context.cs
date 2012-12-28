@@ -26,5 +26,11 @@ namespace Eossyn.Models
         }
     
         public DbSet<User> Users { get; set; }
+        public DbSet<CharacterClass> CharacterClasses { get; set; }
+        public DbSet<CharacterFaction> CharacterFactions { get; set; }
+        public DbSet<CharacterRace> CharacterRaces { get; set; }
+        public DbSet<UserCharacter> UserCharacters { get; set; }
+        public DbSet<UserSession> UserSessions { get; set; }
+        public DbSet<World> Worlds { get; set; }
     }
 }

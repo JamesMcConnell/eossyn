@@ -1,8 +1,8 @@
-﻿using System;
-using System.Text.RegularExpressions;
-
-namespace Eossyn.Core.Extensions
+﻿namespace Eossyn.Core.Extensions
 {
+    using System;
+    using System.Text.RegularExpressions;
+
     public static class Conversion
     {
         /// <summary>

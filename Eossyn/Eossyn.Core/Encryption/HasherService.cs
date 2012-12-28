@@ -1,10 +1,10 @@
-﻿using System;
-using System.Globalization;
-using System.Security.Cryptography;
-using System.Text;
-
-namespace Eossyn.Core.Encryption
+﻿namespace Eossyn.Core.Encryption
 {
+    using System;
+    using System.Globalization;
+    using System.Security.Cryptography;
+    using System.Text;
+
     public class HasherService : IHasherService
     {
         #region IHasherService Members

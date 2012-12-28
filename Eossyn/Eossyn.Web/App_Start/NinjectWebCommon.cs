@@ -63,6 +63,7 @@ namespace Eossyn.Web.App_Start
 			kernel.Bind<IHasherService>().To<HasherService>().InRequestScope();
 			kernel.Bind<IUserManager>().To<UserManager>().InRequestScope();
 			kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
+            kernel.Bind<IUserSessionRepository>().To<UserSessionRepository>().InRequestScope();
 		}        
 	}
 }

@@ -6,8 +6,56 @@
     <edmx:StorageModels>
     <Schema Namespace="EossynModels.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="EossynModelsStoreContainer">
+          <EntitySet Name="CharacterClass" EntityType="EossynModels.Store.CharacterClass" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CharacterFaction" EntityType="EossynModels.Store.CharacterFaction" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CharacterRace" EntityType="EossynModels.Store.CharacterRace" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="EossynModels.Store.User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserCharacter" EntityType="EossynModels.Store.UserCharacter" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserSession" EntityType="EossynModels.Store.UserSession" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="World" EntityType="EossynModels.Store.World" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_CharacterRace_CharacterFaction" Association="EossynModels.Store.FK_CharacterRace_CharacterFaction">
+            <End Role="CharacterFaction" EntitySet="CharacterFaction" />
+            <End Role="CharacterRace" EntitySet="CharacterRace" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCharacter_CharacterClass" Association="EossynModels.Store.FK_UserCharacter_CharacterClass">
+            <End Role="CharacterClass" EntitySet="CharacterClass" />
+            <End Role="UserCharacter" EntitySet="UserCharacter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCharacter_CharacterRace" Association="EossynModels.Store.FK_UserCharacter_CharacterRace">
+            <End Role="CharacterRace" EntitySet="CharacterRace" />
+            <End Role="UserCharacter" EntitySet="UserCharacter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCharacter_User" Association="EossynModels.Store.FK_UserCharacter_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserCharacter" EntitySet="UserCharacter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCharacter_World" Association="EossynModels.Store.FK_UserCharacter_World">
+            <End Role="World" EntitySet="World" />
+            <End Role="UserCharacter" EntitySet="UserCharacter" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="CharacterClass">
+          <Key>
+            <PropertyRef Name="CharacterClassId" />
+          </Key>
+          <Property Name="CharacterClassId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CharacterFaction">
+          <Key>
+            <PropertyRef Name="CharacterFactionId" />
+          </Key>
+          <Property Name="CharacterFactionId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CharacterRace">
+          <Key>
+            <PropertyRef Name="CharacterRaceId" />
+          </Key>
+          <Property Name="CharacterRaceId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CharacterFactionId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
@@ -17,16 +65,132 @@
           <Property Name="Password" Type="ntext" Nullable="false" />
           <Property Name="Salt" Type="uniqueidentifier" Nullable="false" />
           <Property Name="EmailAddress" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
-          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime2" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Nullable="false" />
           <Property Name="IsEnabled" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserCharacter">
+          <Key>
+            <PropertyRef Name="UserCharacterId" />
+          </Key>
+          <Property Name="UserCharacterId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CharacterName" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="CharacterRaceId" Type="int" Nullable="false" />
+          <Property Name="WorldId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CharacterClassId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserSession">
+          <Key>
+            <PropertyRef Name="UserSessionId" />
+          </Key>
+          <Property Name="UserSessionId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CurrentUserCharacterId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CurrentWorldId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedTime" Type="datetime2" Nullable="false" />
+          <Property Name="LastUpdated" Type="datetime2" Nullable="false" />
+          <Property Name="EndedTime" Type="datetime2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="World">
+          <Key>
+            <PropertyRef Name="WorldId" />
+          </Key>
+          <Property Name="WorldId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="WorldName" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_CharacterRace_CharacterFaction">
+          <End Role="CharacterFaction" Type="EossynModels.Store.CharacterFaction" Multiplicity="1" />
+          <End Role="CharacterRace" Type="EossynModels.Store.CharacterRace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterFaction">
+              <PropertyRef Name="CharacterFactionId" />
+            </Principal>
+            <Dependent Role="CharacterRace">
+              <PropertyRef Name="CharacterFactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCharacter_CharacterClass">
+          <End Role="CharacterClass" Type="EossynModels.Store.CharacterClass" Multiplicity="1" />
+          <End Role="UserCharacter" Type="EossynModels.Store.UserCharacter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterClass">
+              <PropertyRef Name="CharacterClassId" />
+            </Principal>
+            <Dependent Role="UserCharacter">
+              <PropertyRef Name="CharacterClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCharacter_CharacterRace">
+          <End Role="CharacterRace" Type="EossynModels.Store.CharacterRace" Multiplicity="1" />
+          <End Role="UserCharacter" Type="EossynModels.Store.UserCharacter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterRace">
+              <PropertyRef Name="CharacterRaceId" />
+            </Principal>
+            <Dependent Role="UserCharacter">
+              <PropertyRef Name="CharacterRaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCharacter_User">
+          <End Role="User" Type="EossynModels.Store.User" Multiplicity="1" />
+          <End Role="UserCharacter" Type="EossynModels.Store.UserCharacter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserCharacter">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCharacter_World">
+          <End Role="World" Type="EossynModels.Store.World" Multiplicity="1" />
+          <End Role="UserCharacter" Type="EossynModels.Store.UserCharacter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="World">
+              <PropertyRef Name="WorldId" />
+            </Principal>
+            <Dependent Role="UserCharacter">
+              <PropertyRef Name="WorldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EossynModels" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="EossynEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="EossynModels.User" />
+          <EntitySet Name="CharacterClasses" EntityType="EossynModels.CharacterClass" />
+          <EntitySet Name="CharacterFactions" EntityType="EossynModels.CharacterFaction" />
+          <EntitySet Name="CharacterRaces" EntityType="EossynModels.CharacterRace" />
+          <EntitySet Name="UserCharacters" EntityType="EossynModels.UserCharacter" />
+          <EntitySet Name="UserSessions" EntityType="EossynModels.UserSession" />
+          <EntitySet Name="Worlds" EntityType="EossynModels.World" />
+          <AssociationSet Name="FK_UserCharacter_CharacterClass" Association="EossynModels.FK_UserCharacter_CharacterClass">
+            <End Role="CharacterClass" EntitySet="CharacterClasses" />
+            <End Role="UserCharacter" EntitySet="UserCharacters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CharacterRace_CharacterFaction" Association="EossynModels.FK_CharacterRace_CharacterFaction">
+            <End Role="CharacterFaction" EntitySet="CharacterFactions" />
+            <End Role="CharacterRace" EntitySet="CharacterRaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCharacter_CharacterRace" Association="EossynModels.FK_UserCharacter_CharacterRace">
+            <End Role="CharacterRace" EntitySet="CharacterRaces" />
+            <End Role="UserCharacter" EntitySet="UserCharacters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCharacter_User" Association="EossynModels.FK_UserCharacter_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserCharacter" EntitySet="UserCharacters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCharacter_World" Association="EossynModels.FK_UserCharacter_World">
+            <End Role="World" EntitySet="Worlds" />
+            <End Role="UserCharacter" EntitySet="UserCharacters" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -40,7 +204,129 @@
           <Property Name="LastLoginDate" Type="DateTime" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserCharacters" Relationship="EossynModels.FK_UserCharacter_User" FromRole="User" ToRole="UserCharacter" />
         </EntityType>
+        <EntityType Name="CharacterClass">
+          <Key>
+            <PropertyRef Name="CharacterClassId" />
+          </Key>
+          <Property Type="Int32" Name="CharacterClassId" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserCharacters" Relationship="EossynModels.FK_UserCharacter_CharacterClass" FromRole="CharacterClass" ToRole="UserCharacter" />
+        </EntityType>
+        <EntityType Name="CharacterFaction">
+          <Key>
+            <PropertyRef Name="CharacterFactionId" />
+          </Key>
+          <Property Type="Int32" Name="CharacterFactionId" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CharacterRaces" Relationship="EossynModels.FK_CharacterRace_CharacterFaction" FromRole="CharacterFaction" ToRole="CharacterRace" />
+        </EntityType>
+        <EntityType Name="CharacterRace">
+          <Key>
+            <PropertyRef Name="CharacterRaceId" />
+          </Key>
+          <Property Type="Int32" Name="CharacterRaceId" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CharacterFactionId" Nullable="false" />
+          <NavigationProperty Name="CharacterFaction" Relationship="EossynModels.FK_CharacterRace_CharacterFaction" FromRole="CharacterRace" ToRole="CharacterFaction" />
+          <NavigationProperty Name="UserCharacters" Relationship="EossynModels.FK_UserCharacter_CharacterRace" FromRole="CharacterRace" ToRole="UserCharacter" />
+        </EntityType>
+        <EntityType Name="UserCharacter">
+          <Key>
+            <PropertyRef Name="UserCharacterId" />
+          </Key>
+          <Property Type="Guid" Name="UserCharacterId" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="CharacterName" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CharacterRaceId" Nullable="false" />
+          <Property Type="Guid" Name="WorldId" Nullable="false" />
+          <Property Type="Int32" Name="CharacterClassId" Nullable="false" />
+          <NavigationProperty Name="CharacterClass" Relationship="EossynModels.FK_UserCharacter_CharacterClass" FromRole="UserCharacter" ToRole="CharacterClass" />
+          <NavigationProperty Name="CharacterRace" Relationship="EossynModels.FK_UserCharacter_CharacterRace" FromRole="UserCharacter" ToRole="CharacterRace" />
+          <NavigationProperty Name="User" Relationship="EossynModels.FK_UserCharacter_User" FromRole="UserCharacter" ToRole="User" />
+          <NavigationProperty Name="World" Relationship="EossynModels.FK_UserCharacter_World" FromRole="UserCharacter" ToRole="World" />
+        </EntityType>
+        <EntityType Name="UserSession">
+          <Key>
+            <PropertyRef Name="UserSessionId" />
+          </Key>
+          <Property Type="Guid" Name="UserSessionId" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="Guid" Name="CurrentUserCharacterId" Nullable="false" />
+          <Property Type="Guid" Name="CurrentWorldId" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedTime" Nullable="false" />
+          <Property Type="DateTime" Name="LastUpdated" Nullable="false" />
+          <Property Type="DateTime" Name="EndedTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="World">
+          <Key>
+            <PropertyRef Name="WorldId" />
+          </Key>
+          <Property Type="Guid" Name="WorldId" Nullable="false" />
+          <Property Type="String" Name="WorldName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserCharacters" Relationship="EossynModels.FK_UserCharacter_World" FromRole="World" ToRole="UserCharacter" />
+        </EntityType>
+        <Association Name="FK_UserCharacter_CharacterClass">
+          <End Type="EossynModels.CharacterClass" Role="CharacterClass" Multiplicity="1" />
+          <End Type="EossynModels.UserCharacter" Role="UserCharacter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterClass">
+              <PropertyRef Name="CharacterClassId" />
+            </Principal>
+            <Dependent Role="UserCharacter">
+              <PropertyRef Name="CharacterClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CharacterRace_CharacterFaction">
+          <End Type="EossynModels.CharacterFaction" Role="CharacterFaction" Multiplicity="1" />
+          <End Type="EossynModels.CharacterRace" Role="CharacterRace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterFaction">
+              <PropertyRef Name="CharacterFactionId" />
+            </Principal>
+            <Dependent Role="CharacterRace">
+              <PropertyRef Name="CharacterFactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCharacter_CharacterRace">
+          <End Type="EossynModels.CharacterRace" Role="CharacterRace" Multiplicity="1" />
+          <End Type="EossynModels.UserCharacter" Role="UserCharacter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterRace">
+              <PropertyRef Name="CharacterRaceId" />
+            </Principal>
+            <Dependent Role="UserCharacter">
+              <PropertyRef Name="CharacterRaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCharacter_User">
+          <End Type="EossynModels.User" Role="User" Multiplicity="1" />
+          <End Type="EossynModels.UserCharacter" Role="UserCharacter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserCharacter">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCharacter_World">
+          <End Type="EossynModels.World" Role="World" Multiplicity="1" />
+          <End Type="EossynModels.UserCharacter" Role="UserCharacter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="World">
+              <PropertyRef Name="WorldId" />
+            </Principal>
+            <Dependent Role="UserCharacter">
+              <PropertyRef Name="WorldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -58,6 +344,64 @@
                 <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CharacterClasses">
+            <EntityTypeMapping TypeName="EossynModels.CharacterClass">
+              <MappingFragment StoreEntitySet="CharacterClass">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CharacterClassId" ColumnName="CharacterClassId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CharacterFactions">
+            <EntityTypeMapping TypeName="EossynModels.CharacterFaction">
+              <MappingFragment StoreEntitySet="CharacterFaction">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CharacterFactionId" ColumnName="CharacterFactionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CharacterRaces">
+            <EntityTypeMapping TypeName="EossynModels.CharacterRace">
+              <MappingFragment StoreEntitySet="CharacterRace">
+                <ScalarProperty Name="CharacterFactionId" ColumnName="CharacterFactionId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CharacterRaceId" ColumnName="CharacterRaceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserCharacters">
+            <EntityTypeMapping TypeName="EossynModels.UserCharacter">
+              <MappingFragment StoreEntitySet="UserCharacter">
+                <ScalarProperty Name="CharacterClassId" ColumnName="CharacterClassId" />
+                <ScalarProperty Name="WorldId" ColumnName="WorldId" />
+                <ScalarProperty Name="CharacterRaceId" ColumnName="CharacterRaceId" />
+                <ScalarProperty Name="CharacterName" ColumnName="CharacterName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserCharacterId" ColumnName="UserCharacterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserSessions">
+            <EntityTypeMapping TypeName="EossynModels.UserSession">
+              <MappingFragment StoreEntitySet="UserSession">
+                <ScalarProperty Name="EndedTime" ColumnName="EndedTime" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+                <ScalarProperty Name="CurrentWorldId" ColumnName="CurrentWorldId" />
+                <ScalarProperty Name="CurrentUserCharacterId" ColumnName="CurrentUserCharacterId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserSessionId" ColumnName="UserSessionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Worlds">
+            <EntityTypeMapping TypeName="EossynModels.World">
+              <MappingFragment StoreEntitySet="World">
+                <ScalarProperty Name="WorldName" ColumnName="WorldName" />
+                <ScalarProperty Name="WorldId" ColumnName="WorldId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -84,6 +428,32 @@
     <Diagrams>
       <Diagram Name="EossynEntities">
         <EntityTypeShape EntityType="EossynModels.User" Width="1.5" PointX="0.75" PointY="0.75" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="EossynModels.CharacterClass" Width="1.5" PointX="10.875" PointY="2.5" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="EossynModels.CharacterFaction" Width="1.5" PointX="3.75" PointY="1.5" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="EossynModels.CharacterRace" Width="1.5" PointX="6" PointY="1.25" Height="1.9802864583333335" />
+        <EntityTypeShape EntityType="EossynModels.UserCharacter" Width="1.5" PointX="8.25" PointY="0.5" Height="2.9417936197916656" />
+        <EntityTypeShape EntityType="EossynModels.UserSession" Width="1.5" PointX="13.125" PointY="0.5" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="EossynModels.World" Width="1.5" PointX="10.875" PointY="0.5" Height="1.5956835937499996" />
+        <AssociationConnector Association="EossynModels.FK_UserCharacter_CharacterClass" >
+          <ConnectorPoint PointX="10.875" PointY="2.9708968098958328" />
+          <ConnectorPoint PointX="9.75" PointY="2.9708968098958328" />
+        </AssociationConnector>
+        <AssociationConnector Association="EossynModels.FK_CharacterRace_CharacterFaction" >
+          <ConnectorPoint PointX="5.25" PointY="2.297841796875" />
+          <ConnectorPoint PointX="6" PointY="2.297841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="EossynModels.FK_UserCharacter_CharacterRace" >
+          <ConnectorPoint PointX="7.5" PointY="2.2401432291666667" />
+          <ConnectorPoint PointX="8.25" PointY="2.2401432291666667" />
+        </AssociationConnector>
+        <AssociationConnector Association="EossynModels.FK_UserCharacter_User" >
+          <ConnectorPoint PointX="2.25" PointY="0.96875" />
+          <ConnectorPoint PointX="8.25" PointY="0.96875" />
+        </AssociationConnector>
+        <AssociationConnector Association="EossynModels.FK_UserCharacter_World" >
+          <ConnectorPoint PointX="10.875" PointY="1.2978417968749998" />
+          <ConnectorPoint PointX="9.75" PointY="1.2978417968749998" />
+        </AssociationConnector>
       </Diagram>
     </Diagrams>
   </Designer>

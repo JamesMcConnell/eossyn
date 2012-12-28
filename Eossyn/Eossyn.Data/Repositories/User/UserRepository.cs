@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
-using Eossyn.Models;
-
-namespace Eossyn.Data.Repositories
+﻿namespace Eossyn.Data.Repositories
 {
+    using System;
+    using System.Linq;
+    using Models;
+
 	public class UserRepository : IUserRepository
 	{
 		private readonly EossynEntities db = new EossynEntities();

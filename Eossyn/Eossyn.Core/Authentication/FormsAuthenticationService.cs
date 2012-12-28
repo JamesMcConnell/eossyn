@@ -1,9 +1,9 @@
-﻿using System;
-using System.Web;
-using System.Web.Security;
-
-namespace Eossyn.Core.Authentication
+﻿namespace Eossyn.Core.Authentication
 {
+    using System;
+    using System.Web;
+    using System.Web.Security;
+
     public class FormsAuthenticationService : IAuthenticationService
     {
         private readonly FormsAuthenticationTicket _ticket;

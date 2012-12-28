@@ -12,22 +12,18 @@ namespace Eossyn.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class CharacterRace
     {
-        public User()
+        public CharacterRace()
         {
             this.UserCharacters = new HashSet<UserCharacter>();
         }
     
-        public System.Guid UserId { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public System.Guid Salt { get; set; }
-        public string EmailAddress { get; set; }
-        public System.DateTime LastLoginDate { get; set; }
-        public System.DateTime CreatedDate { get; set; }
-        public bool IsEnabled { get; set; }
+        public int CharacterRaceId { get; set; }
+        public string Description { get; set; }
+        public int CharacterFactionId { get; set; }
     
+        public virtual CharacterFaction CharacterFaction { get; set; }
         public virtual ICollection<UserCharacter> UserCharacters { get; set; }
     }
 }
