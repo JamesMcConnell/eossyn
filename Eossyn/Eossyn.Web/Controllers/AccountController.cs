@@ -6,18 +6,18 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Eossyn.Web.Models;
-using Eossyn.Infrastructure.Services;
+using Eossyn.Infrastructure.Managers;
 
 namespace Eossyn.Web.Controllers
 {
 	[Authorize]
 	public class AccountController : Controller
 	{
-		private IUserService _userService;
+		private IUserManager _userManager;
 
-		public AccountController(IUserService userService)
+		public AccountController(IUserManager userManager)
 		{
-			_userService = userService;
+			_userManager = userManager;
 		}
 
 		// GET: /Account/Login
@@ -34,9 +34,9 @@ namespace Eossyn.Web.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Login(LoginModel model, string returnUrl)
 		{
-			if (ModelState.IsValid && _userService.ValidateLogin(model.UserName, model.Password))
+			if (ModelState.IsValid && _userManager.ValidateLogin(model.UserName, model.Password))
 			{
-				_userService.SignIn(model.UserName, string.Empty, model.RememberMe, DateTime.Now.AddMonths(1));
+				_userManager.SignIn(model.UserName, string.Empty, model.RememberMe, DateTime.Now.AddMonths(1));
 				return RedirectToLocal(returnUrl);
 			}
 
@@ -48,7 +48,7 @@ namespace Eossyn.Web.Controllers
 		// GET: /Account/Logout
 		public ActionResult Logout()
 		{
-			_userService.SignOut();
+			_userManager.SignOut();
 			return RedirectToAction("Index", "Home");
 		}
 
@@ -65,10 +65,10 @@ namespace Eossyn.Web.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Register(RegisterModel model)
 		{
-			if (ModelState.IsValid && _userService.ValidateRegistration(model.UserName, model.EmailAddress))
+			if (ModelState.IsValid && _userManager.ValidateRegistration(model.UserName, model.EmailAddress))
 			{
-				_userService.CreateUser(model.UserName, model.EmailAddress, model.Password);
-				_userService.SignIn(model.UserName, string.Empty, false, DateTime.Now.AddMonths(1));
+				_userManager.CreateUser(model.UserName, model.EmailAddress, model.Password);
+				_userManager.SignIn(model.UserName, string.Empty, false, DateTime.Now.AddMonths(1));
 				return RedirectToAction("Index", "Home");
 			}
 
