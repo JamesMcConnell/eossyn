@@ -289,6 +289,10 @@
       <Project>{6AD81901-19E7-42CB-9732-30E88CE475F1}</Project>
       <Name>Eossyn.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Eossyn.Models\Eossyn.Models.csproj">
+      <Project>{837E7E3E-B5FD-42E1-9356-5BEA73D4E8C5}</Project>
+      <Name>Eossyn.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Managers\UserSessionManager\IUserSessionManager.cs" />
-    <Compile Include="Managers\UserSessionManager\UserSessionManager.cs" />
+    <Compile Include="Managers\UserSession\IUserSessionManager.cs" />
+    <Compile Include="Managers\UserSession\UserSessionManager.cs" />
     <Compile Include="Managers\User\IUserManager.cs" />
     <Compile Include="Managers\User\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

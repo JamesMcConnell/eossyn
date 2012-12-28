@@ -43,5 +43,11 @@
         /// <param name="emailAddress">The email address the user is attempting to register with.</param>
         /// <returns>True if the user can register with the given information, else false.</returns>
         bool ValidateRegistration(string userName, string emailAddress);
+        /// <summary>
+        /// Retrieves a user for the given user name.
+        /// </summary>
+        /// <param name="userName">The user name value to search for.</param>
+        /// <returns>The requested <see cref="User" /> object if it exists, or null.</returns>
+        User FetchUserByUserName(string userName);
     }
 }

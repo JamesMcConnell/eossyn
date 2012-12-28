@@ -84,6 +84,11 @@
 
             return true;
         }
+
+        public User FetchUserByUserName(string userName)
+        {
+            return _userRepo.FetchByUserName(userName);
+        }
         #endregion
     }
 }

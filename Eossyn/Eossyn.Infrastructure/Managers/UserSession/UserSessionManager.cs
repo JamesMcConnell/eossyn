@@ -34,6 +34,12 @@
             return CurrentUserSession;
         }
 
+        public bool UserSessionExists(Guid userId)
+        {
+            var activeUserSession = _userSessionRepo.FetchActiveUserSessionByUserId(userId);
+            return activeUserSession != null;
+        }
+
         public void UpdateCurrentCharacter(Guid userCharacterId)
         {
             var userSession = CurrentUserSession;

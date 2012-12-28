@@ -18,11 +18,11 @@
         /// <returns>The requested <see cref="UserSession" /> object.</returns>
         UserSession FetchByUserSessionId(Guid userSessionId);
         /// <summary>
-        /// Retrieves a user session for the given UserId.
+        /// Retrieves a user session for the given UserId that is currently active.
         /// </summary>
         /// <param name="userId">The UserId parameter.</param>
         /// <returns>The requested <see cref="UserSession" /> object.</returns>
-        UserSession FetchByUserId(Guid userId);
+        UserSession FetchActiveUserSessionByUserId(Guid userId);
         /// <summary>
         /// Updates the CurrentUserCharacterId column.
         /// </summary>

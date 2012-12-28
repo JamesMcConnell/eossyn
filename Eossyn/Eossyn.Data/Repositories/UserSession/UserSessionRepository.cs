@@ -22,10 +22,10 @@
                     select us).FirstOrDefault();
         }
 
-        public UserSession FetchByUserId(Guid userId)
+        public UserSession FetchActiveUserSessionByUserId(Guid userId)
         {
             return (from us in db.UserSessions
-                    where us.UserId == userId
+                    where us.UserId == userId && us.IsActive
                     select us).FirstOrDefault();
         }
 

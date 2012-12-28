@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Transactions;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
-using Eossyn.Web.Models;
 using Eossyn.Infrastructure.Managers;
+using Eossyn.Web.Models;
 
 namespace Eossyn.Web.Controllers
 {
@@ -14,10 +9,12 @@ namespace Eossyn.Web.Controllers
 	public class AccountController : Controller
 	{
 		private IUserManager _userManager;
+        private IUserSessionManager _userSessionManager;
 
-		public AccountController(IUserManager userManager)
+		public AccountController(IUserManager userManager, IUserSessionManager userSessionManager)
 		{
 			_userManager = userManager;
+            _userSessionManager = userSessionManager;
 		}
 
 		// GET: /Account/Login
@@ -34,21 +31,46 @@ namespace Eossyn.Web.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Login(LoginModel model, string returnUrl)
 		{
-			if (ModelState.IsValid && _userManager.ValidateLogin(model.UserName, model.Password))
-			{
-				_userManager.SignIn(model.UserName, string.Empty, model.RememberMe, DateTime.Now.AddMonths(1));
-				return RedirectToLocal(returnUrl);
-			}
+            // First, verify our model is valid.
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                return View(model);
+            }
 
-			// If we got this far, something failed, redisplay form
-			ModelState.AddModelError("", "The user name or password provided is incorrect.");
-			return View(model);
+            var user = _userManager.FetchUserByUserName(model.UserName);
+            // Does the user even exist?
+            if (user == null)
+            {
+                ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                return View(model);
+            }
+
+            // Can the user actually login?
+            if (!_userManager.ValidateLogin(model.UserName, model.Password))
+            {
+                ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                return View(model);
+            }
+
+            // Is the user still logged in with another browser?
+            if (_userSessionManager.UserSessionExists(user.UserId))
+            {
+                ModelState.AddModelError("", "There is already an active session for this user.");
+                return View(model);
+            }
+
+			// If we got this far, we're good to go.
+            _userManager.SignIn(user.UserName, string.Empty, model.RememberMe, DateTime.Now.AddMonths(1));
+            _userSessionManager.CreateUserSession(user.UserId, Guid.Empty, Guid.Empty);
+            return RedirectToLocal(returnUrl);
 		}
 
 		// GET: /Account/Logout
 		public ActionResult Logout()
 		{
 			_userManager.SignOut();
+            _userSessionManager.EndUserSession();
 			return RedirectToAction("Index", "Home");
 		}
 

@@ -11,6 +11,12 @@
         /// <returns>The requested <see cref="UserSession" /> object.</returns>
         UserSession FetchCurrentUserSession();
         /// <summary>
+        /// Determines whether or not the given userId has an active user session.
+        /// </summary>
+        /// <param name="userId">The UserId parameter to search for.</param>
+        /// <returns>True if there is an active user session for the given UserId, else false.</returns>
+        bool UserSessionExists(Guid userId);
+        /// <summary>
         /// Updates the current <see cref="UserSession" /> object in session with the given UserCharacterId.
         /// This is updated in Session as well as in the database.
         /// </summary>
