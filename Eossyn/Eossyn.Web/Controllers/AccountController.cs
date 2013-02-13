@@ -61,7 +61,7 @@ namespace Eossyn.Web.Controllers
             }
 
 			// If we got this far, we're good to go.
-            _userManager.SignIn(user.UserName, string.Empty, model.RememberMe, DateTime.Now.AddMonths(1));
+            _userManager.SignIn(user.UserName, string.Empty, false, DateTime.Now.AddMonths(1));
             _userSessionManager.CreateUserSession(user.UserId, Guid.Empty, Guid.Empty);
             return RedirectToLocal(returnUrl);
 		}

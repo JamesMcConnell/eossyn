@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eossyn.Models", "Eossyn.Mod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eossyn.Infrastructure", "Eossyn.Infrastructure\Eossyn.Infrastructure.csproj", "{6AD81901-19E7-42CB-9732-30E88CE475F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eossyn.ServiceHost", "Eossyn.ServiceHost\Eossyn.ServiceHost.csproj", "{FF524102-0170-4758-A4C2-D5C305775853}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eossyn.ServiceContracts", "Eossyn.ServiceContracts\Eossyn.ServiceContracts.csproj", "{755608DB-2583-4105-B6AD-BCD2AC298EC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,14 @@ Global
 		{6AD81901-19E7-42CB-9732-30E88CE475F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AD81901-19E7-42CB-9732-30E88CE475F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AD81901-19E7-42CB-9732-30E88CE475F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF524102-0170-4758-A4C2-D5C305775853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF524102-0170-4758-A4C2-D5C305775853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF524102-0170-4758-A4C2-D5C305775853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF524102-0170-4758-A4C2-D5C305775853}.Release|Any CPU.Build.0 = Release|Any CPU
+		{755608DB-2583-4105-B6AD-BCD2AC298EC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{755608DB-2583-4105-B6AD-BCD2AC298EC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{755608DB-2583-4105-B6AD-BCD2AC298EC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{755608DB-2583-4105-B6AD-BCD2AC298EC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
