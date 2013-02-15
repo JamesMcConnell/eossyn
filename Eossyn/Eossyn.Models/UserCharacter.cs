@@ -14,6 +14,11 @@ namespace Eossyn.Models
     
     public partial class UserCharacter
     {
+        public UserCharacter()
+        {
+            this.UserDefaults = new HashSet<UserDefault>();
+        }
+    
         public System.Guid UserCharacterId { get; set; }
         public System.Guid UserId { get; set; }
         public string CharacterName { get; set; }
@@ -25,5 +30,6 @@ namespace Eossyn.Models
         public virtual CharacterRace CharacterRace { get; set; }
         public virtual User User { get; set; }
         public virtual World World { get; set; }
+        public virtual ICollection<UserDefault> UserDefaults { get; set; }
     }
 }

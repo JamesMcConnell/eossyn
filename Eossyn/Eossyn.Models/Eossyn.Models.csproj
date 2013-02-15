@@ -78,6 +78,9 @@
     <Compile Include="UserCharacter.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserDefault.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserSession.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

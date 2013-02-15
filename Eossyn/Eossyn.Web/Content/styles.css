@@ -51,3 +51,54 @@
 	display: block;
 	margin-top: 10px;
 }
+
+/* Layout
+-------------------------------------------------------------*/
+.layout {
+    border: 1px solid #ddd;
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.075);
+       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.075);
+            box-shadow: 0 1px 2px rgba(0,0,0,.075);
+}
+
+.layout,
+.layout .layout-body,
+.layout.fluid .layout-sidebar {
+    height: 300px;
+}
+
+.layout {
+    margin-bottom: 20px;
+    padding: 9px;
+}
+
+.layout div {
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+}
+
+.layout .layout-body {
+    background-color: #dceaf4;
+    margin: 0 auto;
+    width: 70%;
+}
+
+.layout.fluid .layout-sidebar,
+.layout.fluid .layout-header,
+.layout.fluid .layout-body {
+    float: left;
+}
+
+.layout.fluid .layout-sidebar {
+    background-color: #bbd8e9;
+    width: 21.5%;
+    margin-left: 1.0%;
+}
+
+.layout.fluid .layout-body {
+  width: 77.5%;
+}

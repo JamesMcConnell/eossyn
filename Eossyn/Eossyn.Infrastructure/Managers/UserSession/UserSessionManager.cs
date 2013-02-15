@@ -83,8 +83,11 @@
         public void EndUserSession()
         {
             var userSession = CurrentUserSession;
-            CurrentUserSession = null;
-            _userSessionRepo.EndUserSession(userSession.UserSessionId);
+            if (CurrentUserSession != null)
+            {
+                _userSessionRepo.EndUserSession(CurrentUserSession.UserSessionId);
+                CurrentUserSession = null;
+            }
         }
     }
 }

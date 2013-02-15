@@ -11,12 +11,14 @@
         private IAuthenticationService _authService;
 		private IHasherService _hashService;
 		private IUserRepository _userRepo;
+        private IUserDefaultRepository _userDefaultRepo;
 
-		public UserManager(IAuthenticationService authService, IHasherService hashService, IUserRepository userRepo)
+		public UserManager(IAuthenticationService authService, IHasherService hashService, IUserRepository userRepo, IUserDefaultRepository userDefaultRepo)
 		{
 			_authService = authService;
 			_hashService = hashService;
 			_userRepo = userRepo;
+            _userDefaultRepo = userDefaultRepo;
         }
 
         #region IUserManager Methods
@@ -88,6 +90,16 @@
         public User FetchUserByUserName(string userName)
         {
             return _userRepo.FetchByUserName(userName);
+        }
+
+        public void UpdateLastUsedCharacter(Guid userId, Guid userCharacterId)
+        {
+            _userDefaultRepo.UpdateLastCharacter(userId, userCharacterId);
+        }
+
+        public void UpdateLastUsedWorld(Guid userId, Guid worldId)
+        {
+            _userDefaultRepo.UpdateLastWorld(userId, worldId);
         }
         #endregion
     }

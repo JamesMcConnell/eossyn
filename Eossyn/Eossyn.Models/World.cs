@@ -17,11 +17,13 @@ namespace Eossyn.Models
         public World()
         {
             this.UserCharacters = new HashSet<UserCharacter>();
+            this.UserDefaults = new HashSet<UserDefault>();
         }
     
         public System.Guid WorldId { get; set; }
         public string WorldName { get; set; }
     
         public virtual ICollection<UserCharacter> UserCharacters { get; set; }
+        public virtual ICollection<UserDefault> UserDefaults { get; set; }
     }
 }

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Web.Mvc;
+    using NServiceBus;
     using NServiceBus.ObjectBuilder;
 
     public class NServiceBusResolverAdapter : IDependencyResolver
@@ -16,7 +17,7 @@
 
         public object GetService(Type serviceType)
         {
-            return _builder.Build(serviceType);
+            return (Configure.Instance.Configurer.HasComponent(serviceType)) ? _builder.Build(serviceType) : null;
         }
 
         public IEnumerable<object> GetServices(Type serviceType)

@@ -49,5 +49,17 @@
         /// <param name="userName">The user name value to search for.</param>
         /// <returns>The requested <see cref="User" /> object if it exists, or null.</returns>
         User FetchUserByUserName(string userName);
+        /// <summary>
+        /// Updates the UserDefaults table with the last character this user played.
+        /// </summary>
+        /// <param name="userId">Id of the current <see cref="User"/>.</param>
+        /// <param name="userCharacterId">Id of the current <see cref="UserCharacter"/> this user played.</param>
+        void UpdateLastUsedCharacter(Guid userId, Guid userCharacterId);
+        /// <summary>
+        /// Update the UserDefaults table with the last world this user played in.
+        /// </summary>
+        /// <param name="userId">Id of the current <see cref="User"/>.</param>
+        /// <param name="worldId">Id of the current <see cref="World"/> this user played in.</param>
+        void UpdateLastUsedWorld(Guid userId, Guid worldId);
     }
 }

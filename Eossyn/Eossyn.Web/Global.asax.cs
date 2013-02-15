@@ -7,6 +7,7 @@ using System.Web.Routing;
 using Eossyn.Infrastructure.Utilities;
 using Eossyn.Infrastructure.Injection;
 using NServiceBus;
+using NServiceBus.ObjectBuilder.Ninject;
 using Eossyn.ServiceContracts;
 
 namespace Eossyn.Web
@@ -29,23 +30,13 @@ namespace Eossyn.Web
             AuthConfig.RegisterAuth();
 
             _bus = Configure.With()
-                .DefaultBuilder()
+                .NinjectBuilder(NinjectConfiguration.CreateNinjectKernel())
                 .ForMVC()
                 .Log4Net()
                 .XmlSerializer()
                 .MsmqTransport()
                 .UnicastBus()
                 .SendOnly();
-        }
-
-        protected void Session_End(object sender, EventArgs e)
-        {
-            // Eventually, we will want to fire an NSB event to handle the removal from session
-            // as well as update for the database without clogging up our global with unnecessary coupling.
-            _bus.Send(new UserSessionEnd
-            {
-                UserSessionId = Guid.NewGuid()
-            });
         }
     }
 }
