@@ -4,31 +4,31 @@
     using System.Linq;
     using Models;
 
-    public class UserDefaultRepository : IUserDefaultRepository
+    public class UserSettingRepository : IUserSettingRepository
     {
         private readonly EossynEntities db = new EossynEntities();
 
-        public UserDefault GetUserDefaults(Guid userId)
+        public UserSetting GetUserDefaults(Guid userId)
         {
-            return db.UserDefaults.FirstOrDefault(ud => ud.UserId == userId);
+            return db.UserSettings.FirstOrDefault(ud => ud.UserId == userId);
         }
 
-        public void InsertUserDefaults(UserDefault userDefault)
+        public void InsertUserSetting(UserSetting userDefault)
         {
-            db.UserDefaults.Add(userDefault);
+            db.UserSettings.Add(userDefault);
             db.SaveChanges();
         }
 
         public void UpdateLastCharacter(Guid userId, Guid userCharacterId)
         {
-            var dbUserDefault = db.UserDefaults.FirstOrDefault(ud => ud.UserId == userId);
+            var dbUserDefault = db.UserSettings.FirstOrDefault(ud => ud.UserId == userId);
             dbUserDefault.LastUsedCharacterId = userCharacterId;
             db.SaveChanges();
         }
 
         public void UpdateLastWorld(Guid userId, Guid worldId)
         {
-            var dbUserDefault = db.UserDefaults.FirstOrDefault(ud => ud.UserId == userId);
+            var dbUserDefault = db.UserSettings.FirstOrDefault(ud => ud.UserId == userId);
             dbUserDefault.LastUsedWorldId = worldId;
             db.SaveChanges();
         }

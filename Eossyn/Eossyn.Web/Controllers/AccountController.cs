@@ -11,7 +11,7 @@ namespace Eossyn.Web.Controllers
 	{
         public IUserManager UserManager { get; set; }
         public IUserSessionManager UserSessionManager { get; set; }
-        public IBus Bus { get; set; }
+        //public IBus Bus { get; set; }
 
 		public AccountController(IUserManager userManager, IUserSessionManager userSessionManager)
 		{
@@ -56,15 +56,15 @@ namespace Eossyn.Web.Controllers
             }
 
             // Is the user still logged in with another browser?
-            if (UserSessionManager.UserSessionExists(user.UserId))
-            {
-                ModelState.AddModelError("", "There is already an active session for this user.");
-                return View(model);
-            }
+            //if (UserSessionManager.UserSessionExists(user.UserId))
+            //{
+            //    ModelState.AddModelError("", "There is already an active session for this user.");
+            //    return View(model);
+            //}
 
 			// If we got this far, we're good to go.
             UserManager.SignIn(user.UserName, string.Empty, false, DateTime.Now.AddMonths(1));
-            UserSessionManager.CreateUserSession(user.UserId, Guid.Empty, Guid.Empty);
+            //UserSessionManager.CreateUserSession(user.UserId, Guid.Empty, Guid.Empty);
             return RedirectToLocal(returnUrl);
 		}
 
@@ -72,7 +72,7 @@ namespace Eossyn.Web.Controllers
 		public ActionResult Logout()
 		{
 			UserManager.SignOut();
-            UserSessionManager.EndUserSession();
+            //UserSessionManager.EndUserSession();
 			return RedirectToAction("Index", "Home");
 		}
 

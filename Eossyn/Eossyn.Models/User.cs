@@ -17,7 +17,7 @@ namespace Eossyn.Models
         public User()
         {
             this.UserCharacters = new HashSet<UserCharacter>();
-            this.UserDefaults = new HashSet<UserDefault>();
+            this.UserSettings = new HashSet<UserSetting>();
         }
     
         public System.Guid UserId { get; set; }
@@ -30,6 +30,6 @@ namespace Eossyn.Models
         public bool IsEnabled { get; set; }
     
         public virtual ICollection<UserCharacter> UserCharacters { get; set; }
-        public virtual ICollection<UserDefault> UserDefaults { get; set; }
+        public virtual ICollection<UserSetting> UserSettings { get; set; }
     }
 }

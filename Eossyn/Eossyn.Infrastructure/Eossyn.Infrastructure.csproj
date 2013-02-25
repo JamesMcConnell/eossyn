@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -59,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Injection\ConfigureMvc3.cs" />
     <Compile Include="Injection\NinjectConfiguration.cs" />
+    <Compile Include="Injection\NinjectDependencyScope.cs" />
     <Compile Include="Injection\NinjectModule.cs" />
     <Compile Include="Injection\NServiceBusControllerActivator.cs" />
     <Compile Include="Injection\NServiceBusResolverAdapter.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Managers\User\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\SessionKeys.cs" />
+    <Compile Include="Web\DataContractJsonResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Eossyn.Core\Eossyn.Core.csproj">
@@ -83,7 +86,9 @@
       <Name>Eossyn.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Hubs\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

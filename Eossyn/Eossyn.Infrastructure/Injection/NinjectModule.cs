@@ -17,7 +17,9 @@ namespace Eossyn.Infrastructure.Injection
             Bind<IHasherService>().To<HasherService>().InTransientScope();
             Bind<IUserManager>().To<UserManager>().InTransientScope();
             Bind<IUserRepository>().To<UserRepository>().InTransientScope();
+            Bind<IUserSettingRepository>().To<UserSettingRepository>().InTransientScope();
             Bind<IUserSessionRepository>().To<UserSessionRepository>().InTransientScope();
+            Bind<IWorldRepository>().To<WorldRepository>().InTransientScope();
             Bind<IUserSessionManager>().To<UserSessionManager>().InTransientScope();
             Bind<ISessionUtility>().To<SessionUtility>().InTransientScope();
         }

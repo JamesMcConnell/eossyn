@@ -15,8 +15,9 @@ namespace Eossyn.Web.App_Start
 	using Core.Encryption;
     using Core.Web;
 	using Data.Repositories;
-	// using Infrastructure.Services;
     using Infrastructure.Managers;
+    using System.Web.Http;
+    using Infrastructure.Injection;
 
 	public static class NinjectWebCommon 
 	{
@@ -51,6 +52,7 @@ namespace Eossyn.Web.App_Start
 			kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 			
 			RegisterServices(kernel);
+            GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
 			return kernel;
 		}
 
@@ -60,13 +62,15 @@ namespace Eossyn.Web.App_Start
 		/// <param name="kernel">The kernel.</param>
 		private static void RegisterServices(IKernel kernel)
 		{
-			kernel.Bind<IAuthenticationService>().To<FormsAuthenticationService>().InRequestScope();
-			kernel.Bind<IHasherService>().To<HasherService>().InRequestScope();
-			kernel.Bind<IUserManager>().To<UserManager>().InRequestScope();
-			kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
-            kernel.Bind<IUserSessionRepository>().To<UserSessionRepository>().InRequestScope();
-            kernel.Bind<IUserSessionManager>().To<UserSessionManager>().InRequestScope();
-            kernel.Bind<ISessionUtility>().To<SessionUtility>().InRequestScope();
+            kernel.Bind<IAuthenticationService>().To<FormsAuthenticationService>().InTransientScope();
+            kernel.Bind<IHasherService>().To<HasherService>().InTransientScope();
+            kernel.Bind<IUserManager>().To<UserManager>().InTransientScope();
+            kernel.Bind<IUserRepository>().To<UserRepository>().InTransientScope();
+            kernel.Bind<IUserSettingRepository>().To<UserSettingRepository>().InTransientScope();
+            kernel.Bind<IUserSessionRepository>().To<UserSessionRepository>().InTransientScope();
+            kernel.Bind<IWorldRepository>().To<WorldRepository>().InTransientScope();
+            kernel.Bind<IUserSessionManager>().To<UserSessionManager>().InTransientScope();
+            kernel.Bind<ISessionUtility>().To<SessionUtility>().InTransientScope();
 		}        
 	}
 }

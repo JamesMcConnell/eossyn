@@ -11,9 +11,9 @@
         private IAuthenticationService _authService;
 		private IHasherService _hashService;
 		private IUserRepository _userRepo;
-        private IUserDefaultRepository _userDefaultRepo;
+        private IUserSettingRepository _userDefaultRepo;
 
-		public UserManager(IAuthenticationService authService, IHasherService hashService, IUserRepository userRepo, IUserDefaultRepository userDefaultRepo)
+		public UserManager(IAuthenticationService authService, IHasherService hashService, IUserRepository userRepo, IUserSettingRepository userDefaultRepo)
 		{
 			_authService = authService;
 			_hashService = hashService;

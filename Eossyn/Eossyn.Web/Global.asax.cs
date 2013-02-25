@@ -17,7 +17,7 @@ namespace Eossyn.Web
 
     public class MvcApplication : HttpApplication
     {
-        private IBus _bus { get; set; }
+        //private IBus _bus { get; set; }
 
         protected void Application_Start()
         {
@@ -29,14 +29,14 @@ namespace Eossyn.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
-            _bus = Configure.With()
-                .NinjectBuilder(NinjectConfiguration.CreateNinjectKernel())
-                .ForMVC()
-                .Log4Net()
-                .XmlSerializer()
-                .MsmqTransport()
-                .UnicastBus()
-                .SendOnly();
+            //_bus = Configure.With()
+            //    .NinjectBuilder(NinjectConfiguration.CreateNinjectKernel())
+            //    .ForMVC()
+            //    .Log4Net()
+            //    .XmlSerializer()
+            //    .MsmqTransport()
+            //    .UnicastBus()
+            //    .SendOnly();
         }
     }
 }

@@ -3,8 +3,26 @@
 }
 
 <div class="layout fluid">
+    <header>
+        <div class="left">Welcome to EosSyn!</div>
+        <div class="right">
+            <div class="controls">
+                <select class="world-list" data-bind="options: availableWorlds, optionsText: 'WorldName', optionsValue: 'WorldId', value: selectedWorld, optionsCaption: 'Choose World...', event: { change: worldSelected }">
+                </select>
+            </div>
+        </div>
+    </header>
     <div class="layout-body">
         @ViewBag.Message
     </div>
-    <div class="layout-sidebar"></div>
+    <div class="layout-sidebar">
+    
+    </div>
 </div>
+@section Scripts {
+    <script type="text/javascript">
+        app.dataservice.getAllWorlds(function (data) {
+            ko.applyBindings(new IndexViewModel(data));
+        });
+    </script>
+}

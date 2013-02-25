@@ -41,8 +41,13 @@
 			@RenderBody()
 		</div>
 
-		@Scripts.Render("~/Scripts/bootstrap")
-		@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jquery")
+		@Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/knockout")
+        @Scripts.Render("~/bundles/signalr")
+        @Scripts.Render("~/bundles/static")
+        @Scripts.Render("~/bundles/ko-models")
+        <script type="text/javascript" src="/signalr/hubs"></script>
 		@RenderSection("scripts", required: false)
 	</body>
 </html>

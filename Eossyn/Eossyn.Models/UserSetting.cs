@@ -12,7 +12,7 @@ namespace Eossyn.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserDefault
+    public partial class UserSetting
     {
         public System.Guid UserId { get; set; }
         public System.Guid LastUsedCharacterId { get; set; }

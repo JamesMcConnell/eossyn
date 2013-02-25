@@ -21,6 +21,18 @@ namespace Eossyn.Web
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/static").Include(
+                        "~/Scripts/app.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
+                        "~/Scripts/knockout-2.2.0.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/ko-models").Include(
+                        "~/Scripts/ko-models.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
+                        "~/Scripts/jquery.signalR-1.0.0.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
