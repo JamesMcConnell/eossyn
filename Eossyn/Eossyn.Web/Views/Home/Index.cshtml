@@ -3,26 +3,21 @@
 }
 
 <div class="layout fluid">
-    <header>
-        <div class="left">Welcome to EosSyn!</div>
-        <div class="right">
-            <div class="controls">
-                <select class="world-list" data-bind="options: availableWorlds, optionsText: 'WorldName', optionsValue: 'WorldId', value: selectedWorld, optionsCaption: 'Choose World...', event: { change: worldSelected }">
-                </select>
-            </div>
+    <div class="layout-body">@ViewBag.Message</div>
+    <div class="layout-sidebar" ng-controller="WorldCtrl">
+        <div class="controls">
+            <select class="world-list" ng-model="selectedWorld" ng-options="world.WorldId as world.WorldName for world in allWorlds" ng-change="worldSelected()">
+                <option value="">Select A World...</option>
+            </select>
+            <hr />
+            <ul ng-repeat="char in characters">
+                <li>{{char.CharacterName}} - {{char.CharacterRace}} {{char.CharacterClass}}</li>
+            </ul>
         </div>
-    </header>
-    <div class="layout-body">
-        @ViewBag.Message
-    </div>
-    <div class="layout-sidebar">
-    
     </div>
 </div>
 @section Scripts {
     <script type="text/javascript">
-        app.dataservice.getAllWorlds(function (data) {
-            ko.applyBindings(new IndexViewModel(data));
-        });
+        
     </script>
 }

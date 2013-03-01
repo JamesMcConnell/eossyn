@@ -14,15 +14,31 @@ namespace Eossyn.Web.Controllers
     {
         //public IBus Bus { get; set; }
         public IUserManager UserManager { get; set; }
+        public ICharacterRepository CharacterRepo { get; set; }
 
-        public HomeController(IUserManager userManager)
+        public HomeController(IUserManager userManager, ICharacterRepository characterRepo)
         {
             UserManager = userManager;
+            CharacterRepo = characterRepo;
         }
 
         public ActionResult Index()
         {
             return View();
+        }
+
+        public JsonResult GetCharactersForWorld(Guid id)
+        {
+            var currentUserName = UserManager.FetchLoggedInUserName();
+            var currentUser = UserManager.FetchUserByUserName(currentUserName);
+            var userCharacters = CharacterRepo.FetchAllByUserAndWorld(currentUser.UserId, id).Select(x => new
+            {
+                CharacterName = x.CharacterName,
+                CharacterRace = x.CharacterRace.Description,
+                CharacterClass = x.CharacterClass.Description
+            });
+
+            return Json(userCharacters, JsonRequestBehavior.AllowGet);
         }
 
         //public JsonResult UserSettings()

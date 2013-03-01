@@ -62,15 +62,16 @@ namespace Eossyn.Web.App_Start
 		/// <param name="kernel">The kernel.</param>
 		private static void RegisterServices(IKernel kernel)
 		{
-            kernel.Bind<IAuthenticationService>().To<FormsAuthenticationService>().InTransientScope();
-            kernel.Bind<IHasherService>().To<HasherService>().InTransientScope();
-            kernel.Bind<IUserManager>().To<UserManager>().InTransientScope();
-            kernel.Bind<IUserRepository>().To<UserRepository>().InTransientScope();
-            kernel.Bind<IUserSettingRepository>().To<UserSettingRepository>().InTransientScope();
-            kernel.Bind<IUserSessionRepository>().To<UserSessionRepository>().InTransientScope();
-            kernel.Bind<IWorldRepository>().To<WorldRepository>().InTransientScope();
-            kernel.Bind<IUserSessionManager>().To<UserSessionManager>().InTransientScope();
-            kernel.Bind<ISessionUtility>().To<SessionUtility>().InTransientScope();
+            kernel.Bind<IAuthenticationService>().To<FormsAuthenticationService>().InRequestScope();
+            kernel.Bind<IHasherService>().To<HasherService>().InRequestScope();
+            kernel.Bind<IUserManager>().To<UserManager>().InRequestScope();
+            kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
+            kernel.Bind<IUserSettingRepository>().To<UserSettingRepository>().InRequestScope();
+            kernel.Bind<IUserSessionRepository>().To<UserSessionRepository>().InRequestScope();
+            kernel.Bind<IWorldRepository>().To<WorldRepository>().InRequestScope();
+            kernel.Bind<ICharacterRepository>().To<CharacterRepository>().InRequestScope();
+            kernel.Bind<IUserSessionManager>().To<UserSessionManager>().InRequestScope();
+            kernel.Bind<ISessionUtility>().To<SessionUtility>().InRequestScope();
 		}        
 	}
 }

@@ -20,6 +20,7 @@ namespace Eossyn.Infrastructure.Injection
             Bind<IUserSettingRepository>().To<UserSettingRepository>().InTransientScope();
             Bind<IUserSessionRepository>().To<UserSessionRepository>().InTransientScope();
             Bind<IWorldRepository>().To<WorldRepository>().InTransientScope();
+            Bind<ICharacterRepository>().To<CharacterRepository>().InTransientScope();
             Bind<IUserSessionManager>().To<UserSessionManager>().InTransientScope();
             Bind<ISessionUtility>().To<SessionUtility>().InTransientScope();
         }

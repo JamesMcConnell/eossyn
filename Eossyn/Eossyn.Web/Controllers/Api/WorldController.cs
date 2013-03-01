@@ -19,9 +19,14 @@ namespace Eossyn.Web.Controllers.Api
         }
 
         // GET api/world
-        public IEnumerable<World> Get()
+        public dynamic Get()
         {
-            return _repo.FetchAll();
+            return from w in _repo.FetchAll()
+                   select new
+                   {
+                       WorldId = w.WorldId,
+                       WorldName = w.WorldName
+                   };
         }
 
         // GET api/world/5

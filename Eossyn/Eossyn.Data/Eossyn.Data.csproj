@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Character\CharacterRepository.cs" />
+    <Compile Include="Repositories\Character\ICharacterRepository.cs" />
     <Compile Include="Repositories\UserSession\IUserSessionRepository.cs" />
     <Compile Include="Repositories\UserSession\UserSessionRepository.cs" />
     <Compile Include="Repositories\User\IUserSettingRepository.cs" />

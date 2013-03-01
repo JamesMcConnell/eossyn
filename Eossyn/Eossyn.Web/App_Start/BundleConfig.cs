@@ -22,13 +22,11 @@ namespace Eossyn.Web
                         "~/Scripts/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/static").Include(
-                        "~/Scripts/app.js"));
+                        "~/StaticContent/js/ang-main.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
-                        "~/Scripts/knockout-2.2.0.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/ko-models").Include(
-                        "~/Scripts/ko-models.js"));
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                        "~/Scripts/angular/core/angular.js",
+                        "~/Scripts/angular/core/angular-resource.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
                         "~/Scripts/jquery.signalR-1.0.0.js"));
