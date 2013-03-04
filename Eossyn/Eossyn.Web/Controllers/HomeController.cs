@@ -27,20 +27,6 @@ namespace Eossyn.Web.Controllers
             return View();
         }
 
-        public JsonResult GetCharactersForWorld(Guid id)
-        {
-            var currentUserName = UserManager.FetchLoggedInUserName();
-            var currentUser = UserManager.FetchUserByUserName(currentUserName);
-            var userCharacters = CharacterRepo.FetchAllByUserAndWorld(currentUser.UserId, id).Select(x => new
-            {
-                CharacterName = x.CharacterName,
-                CharacterRace = x.CharacterRace.Description,
-                CharacterClass = x.CharacterClass.Description
-            });
-
-            return Json(userCharacters, JsonRequestBehavior.AllowGet);
-        }
-
         //public JsonResult UserSettings()
         //{
         //    DataContractJsonResult result = new DataContractJsonResult();

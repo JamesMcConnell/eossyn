@@ -171,6 +171,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\WorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JsonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -263,7 +264,6 @@
     <Content Include="Scripts\angular\core\angular-scenario.js" />
     <Content Include="Scripts\angular\core\angular.js" />
     <Content Include="Scripts\angular\core\angular.min.js" />
-    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\angular\core\i18n\angular-locale_am-et.js" />
@@ -437,9 +437,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jstd-scenario-adapter-config.js" />
     <Content Include="Scripts\jstd-scenario-adapter.js" />
-    <Content Include="Scripts\knockout-2.2.0.debug.js" />
-    <Content Include="Scripts\knockout-2.2.0.js" />
-    <Content Include="Scripts\ko-models.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="StaticContent\js\ang-main.js" />
     <Content Include="Web.config" />

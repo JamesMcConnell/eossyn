@@ -13,6 +13,9 @@ namespace Eossyn.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapHubs();
+            routes.MapRoute("AllWorlds", "json/worlds", new { controller = "Json", action = "GetAllWorlds" }, new { method = new HttpMethodConstraint("GET") });
+            routes.MapRoute("GetCharactersForWorld", "json/world/{worldId}/characters", new { controller = "Json", action = "GetCharactersForWorld" }, new { method = new HttpMethodConstraint("GET") });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
