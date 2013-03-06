@@ -16,6 +16,9 @@ namespace Eossyn.Web
             routes.MapRoute("AllWorlds", "json/worlds", new { controller = "Json", action = "GetAllWorlds" }, new { method = new HttpMethodConstraint("GET") });
             routes.MapRoute("GetCharactersForWorld", "json/world/{worldId}/characters", new { controller = "Json", action = "GetCharactersForWorld" }, new { method = new HttpMethodConstraint("GET") });
 
+            // User routes
+            routes.MapRoute("GetUserConfig", "userjson/config", new { controller = "UserJson", action = "GetUserConfig" }, new { method = new HttpMethodConstraint("GET") });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

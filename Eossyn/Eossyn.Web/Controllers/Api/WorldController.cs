@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Eossyn.Data.Repositories;
-using Eossyn.Models;
+using Eossyn.Infrastructure.DataContracts;
 
 namespace Eossyn.Web.Controllers.Api
 {
@@ -18,36 +18,34 @@ namespace Eossyn.Web.Controllers.Api
             _repo = repo;
         }
 
-        // GET api/world
-        public dynamic Get()
+        public IEnumerable<WorldListItem> Get()
         {
-            return from w in _repo.FetchAll()
-                   select new
-                   {
-                       WorldId = w.WorldId,
-                       WorldName = w.WorldName
-                   };
+            return _repo.FetchAll().Select(x => new WorldListItem
+            {
+                WorldId = x.WorldId,
+                WorldName = x.WorldName
+            });
         }
 
         // GET api/world/5
-        public World Get(Guid id)
+        public string Get(int id)
         {
-            return _repo.FetchById(id);
+            return "value";
         }
 
         // POST api/world
-        //public void Post([FromBody]string value)
-        //{
-        //}
+        public void Post([FromBody]string value)
+        {
+        }
 
         // PUT api/world/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
+        public void Put(int id, [FromBody]string value)
+        {
+        }
 
         // DELETE api/world/5
-        //public void Delete(int id)
-        //{
-        //}
+        public void Delete(int id)
+        {
+        }
     }
 }

@@ -117,8 +117,18 @@ header .right {
     float: left;
 }
 
+#charList li
+{
+    margin: 2px;
+}
+
 .world-list {
     width: 200px !important;
     margin-left: 7px;
     margin-top: 5px;
+    margin-bottom: 6px;
+}
+
+.no-margin {
+    margin: 0px !important;
 }

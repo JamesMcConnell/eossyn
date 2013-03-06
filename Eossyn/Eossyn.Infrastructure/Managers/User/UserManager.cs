@@ -32,6 +32,11 @@
             _authService.SignOut();
         }
 
+        public bool IsAuthenticated
+        {
+            get { return _authService.IsAuthenticated; }
+        }
+
         public bool ValidateLogin(string userName, string password)
         {
             var user = _userRepo.FetchByUserName(userName);

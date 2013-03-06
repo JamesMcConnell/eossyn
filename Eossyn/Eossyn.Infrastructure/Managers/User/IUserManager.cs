@@ -18,6 +18,10 @@
         /// </summary>
         void SignOut();
         /// <summary>
+        /// Determines whether or not the user is currently authenticated.
+        /// </summary>
+        bool IsAuthenticated { get; }
+        /// <summary>
         /// Determines whether or not the user can be logged in.
         /// </summary>
         /// <param name="userName">The UserName of the user attempting to log in.</param>

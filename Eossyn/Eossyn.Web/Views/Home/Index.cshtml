@@ -2,16 +2,18 @@
     ViewBag.Title = "Home";
 }
 
-<div class="layout fluid">
+<div class="layout fluid" ng-controller="AppCtrl">
     <div class="layout-body">@ViewBag.Message</div>
     <div class="layout-sidebar" ng-controller="WorldCtrl">
-        <div class="controls">
-            <select class="world-list" ng-model="selectedWorld" ng-options="world.WorldId as world.WorldName for world in allWorlds" ng-change="worldSelected()">
+        <div class="controls" ng-show="isAuthorized()">
+            <select class="world-list" ng-model="selectedWorld" ng-options="world.worldId as world.worldName for world in allWorlds" ng-change="worldSelected()">
                 <option value="">Select A World...</option>
             </select>
-            <hr />
-            <ul ng-repeat="char in characters">
-                <li>{{char.CharacterName}} - {{char.CharacterRace}} {{char.CharacterClass}}</li>
+            <hr class="no-margin" />
+            <ul class="unstyled" id="charList">
+                <li ng-repeat="char in characters | filter: {worldId: selectedWorld}">
+                    <a href="#" class="btn btn-block" ng-click="selectChar()">{{char.name}} - {{char.race}} {{char.class}}</a>
+                </li>
             </ul>
         </div>
     </div>

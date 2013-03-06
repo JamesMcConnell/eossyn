@@ -22,6 +22,13 @@
                    select c;
         }
 
+        public UserCharacter FetchById(Guid userCharacterId)
+        {
+            return (from c in db.UserCharacters
+                    where c.UserCharacterId == userCharacterId
+                    select c).SingleOrDefault();
+        }
+
         public void Create(UserCharacter userCharacter)
         {
             throw new NotImplementedException();
