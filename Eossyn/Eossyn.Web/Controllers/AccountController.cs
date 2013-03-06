@@ -64,7 +64,7 @@ namespace Eossyn.Web.Controllers
 
 			// If we got this far, we're good to go.
             UserManager.SignIn(user.UserName, string.Empty, false, DateTime.Now.AddMonths(1));
-            //UserSessionManager.CreateUserSession(user.UserId, Guid.Empty, Guid.Empty);
+            UserSessionManager.CreateUserSession(user.UserId, Guid.Empty, Guid.Empty);
             return RedirectToLocal(returnUrl);
 		}
 
@@ -72,7 +72,7 @@ namespace Eossyn.Web.Controllers
 		public ActionResult Logout()
 		{
 			UserManager.SignOut();
-            //UserSessionManager.EndUserSession();
+            UserSessionManager.EndUserSession();
 			return RedirectToAction("Index", "Home");
 		}
 

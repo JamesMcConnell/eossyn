@@ -57,21 +57,21 @@
           <Key>
             <PropertyRef Name="CharacterClassId" />
           </Key>
-          <Property Name="CharacterClassId" Type="int" Nullable="false" />
+          <Property Name="CharacterClassId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="CharacterFaction">
           <Key>
             <PropertyRef Name="CharacterFactionId" />
           </Key>
-          <Property Name="CharacterFactionId" Type="int" Nullable="false" />
+          <Property Name="CharacterFactionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="CharacterRace">
           <Key>
             <PropertyRef Name="CharacterRaceId" />
           </Key>
-          <Property Name="CharacterRaceId" Type="int" Nullable="false" />
+          <Property Name="CharacterRaceId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="CharacterFactionId" Type="int" Nullable="false" />
         </EntityType>
@@ -98,6 +98,7 @@
           <Property Name="CharacterRaceId" Type="int" Nullable="false" />
           <Property Name="WorldId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="CharacterClassId" Type="int" Nullable="false" />
+          <Property Name="CurrentLevel" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UserSession">
           <Key>
@@ -329,6 +330,7 @@
           <NavigationProperty Name="User" Relationship="EossynModels.FK_UserCharacter_User" FromRole="UserCharacter" ToRole="User" />
           <NavigationProperty Name="World" Relationship="EossynModels.FK_UserCharacter_World" FromRole="UserCharacter" ToRole="World" />
           <NavigationProperty Name="UserSettings" Relationship="EossynModels.FK_UserDefaults_UserCharacter1" FromRole="UserCharacter" ToRole="UserSetting" />
+          <Property Type="Int32" Name="CurrentLevel" Nullable="false" />
         </EntityType>
         <EntityType Name="UserSession">
           <Key>
@@ -508,6 +510,7 @@
           <EntitySetMapping Name="UserCharacters">
             <EntityTypeMapping TypeName="EossynModels.UserCharacter">
               <MappingFragment StoreEntitySet="UserCharacter">
+                <ScalarProperty Name="CurrentLevel" ColumnName="CurrentLevel" />
                 <ScalarProperty Name="CharacterClassId" ColumnName="CharacterClassId" />
                 <ScalarProperty Name="WorldId" ColumnName="WorldId" />
                 <ScalarProperty Name="CharacterRaceId" ColumnName="CharacterRaceId" />

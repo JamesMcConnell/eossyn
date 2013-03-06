@@ -25,6 +25,7 @@ namespace Eossyn.Models
         public int CharacterRaceId { get; set; }
         public System.Guid WorldId { get; set; }
         public int CharacterClassId { get; set; }
+        public int CurrentLevel { get; set; }
     
         public virtual CharacterClass CharacterClass { get; set; }
         public virtual CharacterRace CharacterRace { get; set; }

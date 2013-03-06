@@ -31,6 +31,7 @@ namespace Eossyn.Web.Controllers.Api
                 CharacterName = x.CharacterName,
                 CharacterRace = x.CharacterRace.Description,
                 CharacterClass = x.CharacterClass.Description,
+                CharacterLevel = x.CurrentLevel,
                 WorldId = x.WorldId.ToString()
             }).ToList();
         }
@@ -45,6 +46,7 @@ namespace Eossyn.Web.Controllers.Api
                 CharacterClass = userCharacter.CharacterClass.Description,
                 CharacterRace = userCharacter.CharacterRace.Description,
                 CharacterName = userCharacter.CharacterName,
+                CharacterLevel = userCharacter.CurrentLevel,
                 WorldId = userCharacter.WorldId.ToString()
             };
         }

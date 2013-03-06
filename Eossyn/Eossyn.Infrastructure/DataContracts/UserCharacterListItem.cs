@@ -5,14 +5,17 @@
     [DataContract]
     public class UserCharacterListItem
     {
-        [DataMember(Name = "name")]
+        [DataMember(Name = "charName")]
         public string CharacterName { get; set; }
 
-        [DataMember(Name = "race")]
+        [DataMember(Name = "charRace")]
         public string CharacterRace { get; set; }
 
-        [DataMember(Name = "class")]
+        [DataMember(Name = "charClass")]
         public string CharacterClass { get; set; }
+
+        [DataMember(Name = "charLevel")]
+        public int CharacterLevel { get; set; }
 
         [DataMember(Name = "worldId")]
         public string WorldId { get; set; }
