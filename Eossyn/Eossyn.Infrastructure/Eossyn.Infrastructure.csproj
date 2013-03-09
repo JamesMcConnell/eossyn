@@ -58,9 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContracts\UserCharacterListItem.cs" />
+    <Compile Include="DataContracts\UserCharacterModel.cs" />
     <Compile Include="DataContracts\UserConfig.cs" />
-    <Compile Include="DataContracts\WorldListItem.cs" />
+    <Compile Include="DataContracts\UserConfigResponse.cs" />
+    <Compile Include="DataContracts\WorldModel.cs" />
     <Compile Include="Injection\ConfigureMvc3.cs" />
     <Compile Include="Injection\NinjectConfiguration.cs" />
     <Compile Include="Injection\NinjectDependencyScope.cs" />

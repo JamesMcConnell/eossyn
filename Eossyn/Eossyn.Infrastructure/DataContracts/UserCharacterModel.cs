@@ -3,8 +3,11 @@
     using System.Runtime.Serialization;
 
     [DataContract]
-    public class UserCharacterListItem
+    public class UserCharacterModel
     {
+        [DataMember(Name = "charId")]
+        public string CharacterId { get; set; }
+
         [DataMember(Name = "charName")]
         public string CharacterName { get; set; }
 

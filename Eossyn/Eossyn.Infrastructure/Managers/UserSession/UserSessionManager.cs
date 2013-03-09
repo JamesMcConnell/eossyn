@@ -1,6 +1,7 @@
 ﻿namespace Eossyn.Infrastructure.Managers
 {
     using System;
+    using System.Linq;
     using Models;
     using Core.Web;
     using Data.Repositories;
@@ -32,6 +33,11 @@
         public UserSession FetchCurrentUserSession()
         {
             return CurrentUserSession;
+        }
+
+        UserSession FetchMostRecentUserSession(Guid userId)
+        {
+            return _userSessionRepo.FetchMostRecentUserSession(userId);
         }
 
         public bool UserSessionExists(Guid userId)

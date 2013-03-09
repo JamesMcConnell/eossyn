@@ -7,16 +7,16 @@
     public interface IUserSettingRepository
     {
         /// <summary>
-        /// Retrieves the user defaults.
+        /// Retrieves the user settings.
         /// </summary>
-        /// <param name="userId">Id of the <see cref="User"/>.</param>
-        /// <returns>The current <see cref="UserDefault"/>s for the given user.</returns>
-        UserSetting GetUserDefaults(Guid userId);
+        /// <param name="userId">The ID of the <see cref="User" />.</param>
+        /// <returns>The current <see cref="UserSetting"/> object for the given user.</returns>
+        UserSetting GetUserSettings(Guid userId);
         /// <summary>
         /// Inserts defaults for a given user.
         /// </summary>
-        /// <param name="userDefault">The <see cref="UserDefault"/>s to insert.</param>
-        void InsertUserSetting(UserSetting userDefault);
+        /// <param name="userSetting">The <see cref="UserSetting"/> object to insert.</param>
+        void InsertUserSetting(UserSetting userSetting);
         /// <summary>
         /// Updates the last character a user played.
         /// </summary>

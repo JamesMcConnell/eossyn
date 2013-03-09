@@ -24,6 +24,12 @@
         /// <returns>The requested <see cref="UserSession" /> object.</returns>
         UserSession FetchActiveUserSessionByUserId(Guid userId);
         /// <summary>
+        /// Retrieves the most recent <see cref="UserSession" /> for the given <see cref="User" />
+        /// </summary>
+        /// <param name="userId">The ID of the <see cref="User" />.</param>
+        /// <returns>The requested <see cref="UserSession" /> object.</returns>
+        UserSession FetchMostRecentUserSession(Guid userId);
+        /// <summary>
         /// Updates the CurrentUserCharacterId column.
         /// </summary>
         /// <param name="userSessionId">The UserSessionId to update.</param>

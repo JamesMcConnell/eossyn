@@ -11,8 +11,8 @@
             </select>
             <hr class="no-margin" />
             <ul class="unstyled" id="charList">
-                <li ng-repeat="char in characters | filter: {worldId: selectedWorld}">
-                    <a href="#" class="btn btn-block" ng-click="selectChar()">{{char.charName}} - Level {{char.charLevel }} {{char.charRace}} {{char.charClass}}</a>
+                <li ng-model="selectedCharacter" ng-repeat="char in characters | filter: {worldId: selectedWorld}">
+                    <a href="#" class="btn btn-block" ng-click="selectChar(char)">{{char.charName}} - Level {{char.charLevel }} {{char.charRace}} {{char.charClass}}</a>
                 </li>
             </ul>
         </div>

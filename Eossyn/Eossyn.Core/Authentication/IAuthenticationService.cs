@@ -11,7 +11,7 @@
         /// <param name="userData">Any extra user data (e.g. role).</param>
         /// <param name="createPersistentCookie">Determines whether to store the cookie.</param>
         /// <param name="expirationDate">The date at which the cookie expires.</param>
-        void SignIn(string userName, string userData, bool createPersistentCookie, DateTime expirationDate);
+        void SignIn(string userName, bool createPersistentCookie);
         /// <summary>
         /// Signs the user out.
         /// </summary>

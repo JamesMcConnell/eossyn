@@ -12,7 +12,7 @@
         /// <param name="userData">Any extra data (e.g. role).</param>
         /// <param name="createPersistentCookie">Determines whether or not to store the cookie.</param>
         /// <param name="expiration">The date at which the cookie expires.</param>
-        void SignIn(string userName, string userData, bool createPersistentCookie, DateTime expiration);
+        void SignIn(string userName, bool createPersistentCookie);
         /// <summary>
         /// Signs the user out.
         /// </summary>
@@ -33,6 +33,11 @@
         /// </summary>
         /// <returns>The currently logged in users UserName.</returns>
         string FetchLoggedInUserName();
+        /// <summary>
+        /// Retrieves the <see cref="User" /> object of the currently logged in user.
+        /// </summary>
+        /// <returns>The currently logged in <see cref="User" />.</returns>
+        User FetchLoggedInUser();
         /// <summary>
         /// Creates a new user.
         /// </summary>

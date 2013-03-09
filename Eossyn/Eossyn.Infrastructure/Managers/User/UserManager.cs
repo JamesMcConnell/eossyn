@@ -22,9 +22,9 @@
         }
 
         #region IUserManager Methods
-        public void SignIn(string userName, string userData, bool createPersistentCookie, DateTime expiration)
+        public void SignIn(string userName, bool createPersistentCookie)
         {
-            _authService.SignIn(userName, userData, createPersistentCookie, expiration);
+            _authService.SignIn(userName, createPersistentCookie);
         }
 
         public void SignOut()
@@ -57,6 +57,11 @@
         public string FetchLoggedInUserName()
         {
             return _authService.FetchName();
+        }
+
+        public User FetchLoggedInUser()
+        {
+            return _userRepo.FetchByUserName(_authService.FetchName());
         }
 
         public void CreateUser(string userName, string emailAddress, string password)

@@ -42,11 +42,35 @@
 		</div>
 
         @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
 		@Scripts.Render("~/bundles/bootstrap")
         @Scripts.Render("~/bundles/angular")
         @Scripts.Render("~/bundles/signalr")
         @Scripts.Render("~/bundles/static")
         <script type="text/javascript" src="/signalr/hubs"></script>
 		@RenderSection("scripts", required: false)
+        <script type="text/javascript">
+            $(function () {
+                
+            });
+        </script>
 	</body>
 </html>
+
+<script type="text/javascript">
+    $(function () {
+        var buttonTranslations = [];
+        buttonTranslations['Yes'] = 'Yes';
+        buttonTranslations['No'] = 'No';
+        buttonTranslations['Cancel'] = 'Cancel';
+        buttonTranslations['Ok'] = 'Ok';
+        intializeMessageBoxButtons(buttonTranslations);
+        $.ajax({
+            url: '/Account/GetUserTimeout',
+            cache: 'false',
+            success: function (data) {
+                initUserTimeoutManager(parseInt(data) - (45 * 1000), 'Timer', 'Do you wish to extend your session?');
+            }
+        });
+    });
+</script>

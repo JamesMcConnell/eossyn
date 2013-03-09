@@ -11,8 +11,8 @@
         #region IUserSessionRepository Members
         public IQueryable<UserSession> FetchAll()
         {
-            return from us in db.UserSessions
-                   select us;
+            return from u in db.UserSessions
+                   select u;
         }
 
         public UserSession FetchByUserSessionId(Guid userSessionId)
@@ -26,6 +26,14 @@
         {
             return (from us in db.UserSessions
                     where us.UserId == userId && us.IsActive
+                    select us).FirstOrDefault();
+        }
+
+        public UserSession FetchMostRecentUserSession(Guid userId)
+        {
+            return (from us in db.UserSessions
+                    where us.UserId == userId && !us.IsActive
+                    orderby us.LastUpdated
                     select us).FirstOrDefault();
         }
 
@@ -70,6 +78,7 @@
             var dbUserSession = FetchByUserSessionId(userSessionId);
             if (dbUserSession != null)
             {
+                dbUserSession.LastUpdated = DateTime.Now;
                 dbUserSession.IsActive = false;
                 db.SaveChanges();
             }

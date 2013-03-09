@@ -1,13 +1,12 @@
 ﻿namespace Eossyn.Infrastructure.DataContracts
 {
-    using System;
     using System.Runtime.Serialization;
 
     [DataContract]
-    public class WorldListItem
+    public class WorldModel
     {
         [DataMember(Name = "worldId")]
-        public Guid WorldId { get; set; }
+        public string WorldId { get; set; }
 
         [DataMember(Name = "worldName")]
         public string WorldName { get; set; }

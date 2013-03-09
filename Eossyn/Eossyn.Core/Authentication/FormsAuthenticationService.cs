@@ -22,26 +22,9 @@
         }
 
         #region IAuthenticationService Members
-        public void SignIn(string userName, string userData, bool createPersistentCookie, DateTime expirationDate)
+        public void SignIn(string userName, bool createPersistentCookie)
         {
-            FormsAuthenticationTicket newTicket = new FormsAuthenticationTicket(
-                2,
-                userName,
-                DateTime.Now,
-                expirationDate,
-                createPersistentCookie,
-                userData,
-                FormsAuthentication.FormsCookiePath
-            );
-
-            string hash = FormsAuthentication.Encrypt(newTicket);
-            HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
-            if (newTicket.IsPersistent)
-            {
-                cookie.Expires = newTicket.Expiration;
-            }
-
-            HttpContext.Current.Response.Cookies.Add(cookie);
+            FormsAuthentication.SetAuthCookie(userName, createPersistentCookie);
         }
 
         public void SignOut()

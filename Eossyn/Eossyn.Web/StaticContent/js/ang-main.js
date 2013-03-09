@@ -2,16 +2,14 @@
 app.controller("AppCtrl", function ($scope, $http) {
     if ($scope.userConfig == null) {
         $http({ method: 'GET', url: 'api/userconfig' }).success(function (data, status) {
-            $scope.userConfig = data;
+            if (data.isAuthorized) {
+                $scope.userConfig = data.userConfig;
+            }
         });
     }
 
     $scope.isAuthorized = function () {
-        if ($scope.userConfig != null) {
-            return $scope.userConfig.isLoggedIn;
-        } else {
-            return false;
-        }
+        return $scope.userConfig != null;
     }
 });
 
@@ -29,6 +27,10 @@ app.controller('WorldCtrl', function ($scope, $http) {
             $http({ method: 'GET', url: 'api/character' }).success(function (data, status) {
                 $scope.characters = data;
             });
+        }
+
+        $scope.selectChar = function (char) {
+            console.log(char);
         }
     }
 });

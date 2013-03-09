@@ -11,6 +11,12 @@
         /// <returns>The requested <see cref="UserSession" /> object.</returns>
         UserSession FetchCurrentUserSession();
         /// <summary>
+        /// Retrieves the most recent active <see cref="UserSession" /> for the given <see cref="User" />.
+        /// </summary>
+        /// <param name="userId">The ID of the <see cref="User" />.</param>
+        /// <returns>The requested <see cref="UserSession" /> object.</returns>
+        UserSession FetchMostRecentUserSession(Guid userId);
+        /// <summary>
         /// Determines whether or not the given userId has an active user session.
         /// </summary>
         /// <param name="userId">The UserId parameter to search for.</param>
